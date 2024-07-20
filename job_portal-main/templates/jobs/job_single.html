@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ q.title }}</h1>
+<p>{{ q.description }}</p>
+<p><strong>Location:</strong> {{ q.job_location }}</p>
+<p><strong>Salary:</strong> {{ q.Salary }}</p>
+<p><strong>Application Deadline:</strong> {{ q.application_deadline }}</p>
+
+{% if timezone.now > q.application_deadline %}
+    <p>The application deadline for this job has passed.</p>
+{% else %}
+    <a href="{% url 'apply_job' q.id %}">Apply for this job</a>
+{% endif %}
+{% endblock %}
